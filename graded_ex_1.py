@@ -34,7 +34,10 @@ products = {
 
 
 def display_sorted_products(products_list, sort_order):
-    sorted_products = sorted(products_list, key=lambda x: x[1], reverse=(sort_order == 2))
+    if sort_order == "asc":
+        sorted_products = sorted(products_list, key=lambda x: x[1])
+    elif sort_order == "desc":
+        sorted_products = sorted(products_list, key=lambda x: x[1], reverse=True)
     display_products(sorted_products)
     return sorted_products
 
@@ -64,9 +67,12 @@ def add_to_cart(cart, product, quantity):
     cart.append((product, quantity))
 
 def display_cart(cart):
+    total_cost = 0
     for product, quantity in cart:
-        print(f"{product} - Quantity: {quantity}")
-
+        cost = product[1] * quantity
+        total_cost += cost
+        print(f"{product[0]} - ${product[1]} x {quantity} = ${cost}")
+    print(f"Total cost: ${total_cost}")
 
 def generate_receipt(name, email, cart, total_cost, address):
      print("\nReceipt")
@@ -76,7 +82,7 @@ def generate_receipt(name, email, cart, total_cost, address):
      print(f"Address: {address}")
      print("\nItems Purchased:")
      for product, quantity in cart:
-        print(f"{product} - Quantity: {quantity}")
+        print(f"{product[0]} - Quantity: {quantity}")
      print(f"\nTotal Cost: ${total_cost}")
      print("\nYour order will be delivered in 3 days. Payment will be charged after the delivery is successful.")
 
