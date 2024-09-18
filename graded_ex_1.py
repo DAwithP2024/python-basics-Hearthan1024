@@ -45,6 +45,7 @@ def display_products(products_list):
 def display_categories():
     for i, category in enumerate(products.keys(), 1):
         print(f"{i}. {category}")
+        return len(products)
 
 
 def add_to_cart(cart, product, quantity):
