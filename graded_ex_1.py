@@ -69,17 +69,16 @@ def display_cart(cart):
 
 
 def generate_receipt(name, email, cart, total_cost, address):
-    print("\nReceipt")
-    print("-------")
-    print(f"Name: {name}")
-    print(f"Email: {email}")
-    print(f"Address: {address}")
-    print("\nItems Purchased:")
-    for product, quantity in cart:
+     print("\nReceipt")
+     print("-------")
+     print(f"Name: {name}")
+     print(f"Email: {email}")
+     print(f"Address: {address}")
+     print("\nItems Purchased:")
+     for product, quantity in cart:
         print(f"{product} - Quantity: {quantity}")
-    print(f"\nTotal Cost: ${total_cost}")
-    print("\nYour order will be delivered in 3 days. Payment will be charged after the delivery is successful.")
-
+     print(f"\nTotal Cost: ${total_cost}")
+     print("\nYour order will be delivered in 3 days. Payment will be charged after the delivery is successful.")
 
 def validate_name(name):
     parts = name.split()
@@ -112,12 +111,11 @@ def main():
     while True:
         print("\nCategories:")
         display_categories()
-        category_choice = int(input("Select a category by number: "))
-        if category_choice < 1 or category_choice > len(products):
-            print("Invalid choice. Please select a valid category number.")
+        category_index = display_categories()
+        if category_index is None:
             continue
 
-        category = list(products.keys())[category_choice - 1]
+        category = list(products.keys())[category_index]
         print(f"\nProducts in {category}:")
         display_products(products[category])
 
