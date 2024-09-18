@@ -1,3 +1,5 @@
+
+
 # Products available in the store by category
 products = {
     "IT Products": [
@@ -45,7 +47,17 @@ def display_products(products_list):
 def display_categories():
     for i, category in enumerate(products.keys(), 1):
         print(f"{i}. {category}")
-        return len(products)
+    try:
+        category_choice = int(input("Select a category by number: "))
+        if 1 <= category_choice <= len(products):
+            return category_choice - 1
+        else:
+            print("Invalid choice. Please select a valid category number.")
+            return None
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        return None
+        
 
 
 def add_to_cart(cart, product, quantity):
